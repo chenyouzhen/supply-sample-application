@@ -1,0 +1,142 @@
+/*
+工厂信息:正常，停产
+*/
+entity Factory {
+	name String required,
+    description String,
+    scale String,
+    location String required,    
+    status String required,
+}
+
+/*
+产品type：口罩，防护服，消毒水
+*/
+entity Product {
+	name String required,
+    type String required,
+    description String, 
+    capacity Instant,
+    planCapacity Instant,
+    reserve String
+}
+
+/*
+流水线type:N95,医用外科，普通医用
+*/
+entity AssemblyLine {
+	name String required,
+    type String required,
+    description String, 
+    capacity Instant required,
+    planCapacity Instant required,
+    reserve String
+}
+
+/*
+property:计件数，电流
+*/
+entity Observation {
+	phenomenonTime ZonedDateTime,
+    result String required,
+    resultTime ZonedDateTime required,
+    property String required,
+    unitOfMeasurement String,
+    intervalTime Long,
+    reserve String
+}
+
+/*
+Alarm:报警级别，状态
+*/
+entity Alarm {
+	name String,
+	phenomenonTime ZonedDateTime,
+    result String required,
+    resultTime ZonedDateTime required,
+    description String,
+    level String,
+    status String required,
+    resolveTime ZonedDateTime,
+    details String   
+}
+
+/*
+KPI type:产能达成率，计划完成率，日均产量，累计产量...
+*/
+entity Kpi {
+	name String,
+	phenomenonTime ZonedDateTime,
+    result String required,
+    resultTime ZonedDateTime required,
+    description String,
+    intervalTime Long,
+    type String required,
+    unitOfMeasurement String,
+    reserve String
+}
+
+/*
+Record type:日产量
+*/
+entity Record {
+	name String,
+	phenomenonTime ZonedDateTime,
+    result String required,
+    resultTime ZonedDateTime required,
+    description String,
+    intervalTime Long,
+    type String required,
+    unitOfMeasurement String,
+    reserve String
+}
+
+
+/*
+Mapping:关联产线与IoT2040的数据关系
+*/
+entity Link {
+	name String,
+    deviceId String required,
+    description String
+}
+
+
+relationship OneToMany {
+    Factory{product(name)} to Product{factory(name) required} 
+}
+
+relationship OneToMany {
+    Factory{kpi(name)} to Kpi{factory(name) required} 
+}
+
+relationship OneToMany {
+    AssemblyLine{observation(name)} to Observation{assemblyline(name) required}
+}
+
+relationship OneToMany {
+    Product{assemblyline(name)} to AssemblyLine{product(name) required} 
+}
+
+relationship OneToMany {
+    Product{kpi(name)} to Kpi{product(name) required}
+}
+
+relationship OneToMany {
+	Factory{alarm(name)} to Alarm{Factory(name)} 
+}
+
+relationship OneToOne {
+    AssemblyLine{link(name)} to Link{assemblyline(name) required}
+}
+
+relationship OneToMany {
+    AssemblyLine{record(name)} to Record{assemblyline(name) required}
+}
+
+relationship OneToMany {
+    Link{observation(name)} to Observation{link(name) required}
+}
+paginate Factory with pagination
+service all with serviceImpl
+dto * with mapstruct
