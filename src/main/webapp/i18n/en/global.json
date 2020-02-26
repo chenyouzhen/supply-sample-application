@@ -7,6 +7,14 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entities",
+        "factory": "Factory",
+        "product": "Product",
+        "assemblyLine": "Assembly Line",
+        "observation": "Observation",
+        "alarm": "Alarm",
+        "kpi": "Kpi",
+        "record": "Record",
+        "link": "Link",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

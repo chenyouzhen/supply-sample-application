@@ -1,0 +1,62 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="assemblyLine">
+            <h2><span jhiTranslate="supplySampleApplicationApp.assemblyLine.detail.title">Assembly Line</span> {{ assemblyLine.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="supplySampleApplicationApp.assemblyLine.name">Name</span></dt>
+                <dd>
+                    <span>{{ assemblyLine.name }}</span>
+                </dd>
+                <dt><span jhiTranslate="supplySampleApplicationApp.assemblyLine.type">Type</span></dt>
+                <dd>
+                    <span>{{ assemblyLine.type }}</span>
+                </dd>
+                <dt><span jhiTranslate="supplySampleApplicationApp.assemblyLine.description">Description</span></dt>
+                <dd>
+                    <span>{{ assemblyLine.description }}</span>
+                </dd>
+                <dt><span jhiTranslate="supplySampleApplicationApp.assemblyLine.capacity">Capacity</span></dt>
+                <dd>
+                    <span>{{ assemblyLine.capacity }}</span>
+                </dd>
+                <dt><span jhiTranslate="supplySampleApplicationApp.assemblyLine.planCapacity">Plan Capacity</span></dt>
+                <dd>
+                    <span>{{ assemblyLine.planCapacity }}</span>
+                </dd>
+                <dt><span jhiTranslate="supplySampleApplicationApp.assemblyLine.reserve">Reserve</span></dt>
+                <dd>
+                    <span>{{ assemblyLine.reserve }}</span>
+                </dd>
+                <dt><span jhiTranslate="supplySampleApplicationApp.assemblyLine.link">Link</span></dt>
+                <dd>
+                    <div *ngIf="assemblyLine.linkId">
+                        <a [routerLink]="['/link', assemblyLine.linkId, 'view']">{{ assemblyLine.linkName }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="supplySampleApplicationApp.assemblyLine.product">Product</span></dt>
+                <dd>
+                    <div *ngIf="assemblyLine.productId">
+                        <a [routerLink]="['/product', assemblyLine.productId, 'view']">{{ assemblyLine.productName }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/assembly-line', assemblyLine.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

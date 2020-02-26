@@ -1,0 +1,81 @@
+{
+    "name": "AssemblyLine",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "capacity",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "planCapacity",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "reserve",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "link",
+            "otherEntityRelationshipName": "assemblyline",
+            "relationshipName": "link",
+            "otherEntityField": "name",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "observation",
+            "otherEntityRelationshipName": "assemblyline",
+            "relationshipName": "observation"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "record",
+            "otherEntityRelationshipName": "assemblyline",
+            "relationshipName": "record"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "product",
+            "otherEntityRelationshipName": "assemblyline",
+            "relationshipValidateRules": "required",
+            "relationshipName": "product",
+            "otherEntityField": "name"
+        }
+    ],
+    "changelogDate": "20200226140800",
+    "entityTableName": "assembly_line",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

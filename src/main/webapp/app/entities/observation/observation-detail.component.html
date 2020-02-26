@@ -1,0 +1,66 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="observation">
+            <h2><span jhiTranslate="supplySampleApplicationApp.observation.detail.title">Observation</span> {{ observation.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="supplySampleApplicationApp.observation.phenomenonTime">Phenomenon Time</span></dt>
+                <dd>
+                    <span>{{ observation.phenomenonTime }}</span>
+                </dd>
+                <dt><span jhiTranslate="supplySampleApplicationApp.observation.result">Result</span></dt>
+                <dd>
+                    <span>{{ observation.result }}</span>
+                </dd>
+                <dt><span jhiTranslate="supplySampleApplicationApp.observation.resultTime">Result Time</span></dt>
+                <dd>
+                    <span>{{ observation.resultTime }}</span>
+                </dd>
+                <dt><span jhiTranslate="supplySampleApplicationApp.observation.property">Property</span></dt>
+                <dd>
+                    <span>{{ observation.property }}</span>
+                </dd>
+                <dt><span jhiTranslate="supplySampleApplicationApp.observation.unitOfMeasurement">Unit Of Measurement</span></dt>
+                <dd>
+                    <span>{{ observation.unitOfMeasurement }}</span>
+                </dd>
+                <dt><span jhiTranslate="supplySampleApplicationApp.observation.intervalTime">Interval Time</span></dt>
+                <dd>
+                    <span>{{ observation.intervalTime }}</span>
+                </dd>
+                <dt><span jhiTranslate="supplySampleApplicationApp.observation.reserve">Reserve</span></dt>
+                <dd>
+                    <span>{{ observation.reserve }}</span>
+                </dd>
+                <dt><span jhiTranslate="supplySampleApplicationApp.observation.assemblyline">Assemblyline</span></dt>
+                <dd>
+                    <div *ngIf="observation.assemblylineId">
+                        <a [routerLink]="['/assembly-line', observation.assemblylineId, 'view']">{{ observation.assemblylineName }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="supplySampleApplicationApp.observation.link">Link</span></dt>
+                <dd>
+                    <div *ngIf="observation.linkId">
+                        <a [routerLink]="['/link', observation.linkId, 'view']">{{ observation.linkName }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/observation', observation.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
