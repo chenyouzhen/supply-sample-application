@@ -1,0 +1,68 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="record">
+            <h2><span jhiTranslate="supplySampleApplicationApp.record.detail.title">Record</span> {{ record.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="supplySampleApplicationApp.record.name">Name</span></dt>
+                <dd>
+                    <span>{{ record.name }}</span>
+                </dd>
+                <dt><span jhiTranslate="supplySampleApplicationApp.record.phenomenonTime">Phenomenon Time</span></dt>
+                <dd>
+                    <span>{{ record.phenomenonTime }}</span>
+                </dd>
+                <dt><span jhiTranslate="supplySampleApplicationApp.record.result">Result</span></dt>
+                <dd>
+                    <span>{{ record.result }}</span>
+                </dd>
+                <dt><span jhiTranslate="supplySampleApplicationApp.record.resultTime">Result Time</span></dt>
+                <dd>
+                    <span>{{ record.resultTime }}</span>
+                </dd>
+                <dt><span jhiTranslate="supplySampleApplicationApp.record.description">Description</span></dt>
+                <dd>
+                    <span>{{ record.description }}</span>
+                </dd>
+                <dt><span jhiTranslate="supplySampleApplicationApp.record.intervalTime">Interval Time</span></dt>
+                <dd>
+                    <span>{{ record.intervalTime }}</span>
+                </dd>
+                <dt><span jhiTranslate="supplySampleApplicationApp.record.type">Type</span></dt>
+                <dd>
+                    <span>{{ record.type }}</span>
+                </dd>
+                <dt><span jhiTranslate="supplySampleApplicationApp.record.unitOfMeasurement">Unit Of Measurement</span></dt>
+                <dd>
+                    <span>{{ record.unitOfMeasurement }}</span>
+                </dd>
+                <dt><span jhiTranslate="supplySampleApplicationApp.record.reserve">Reserve</span></dt>
+                <dd>
+                    <span>{{ record.reserve }}</span>
+                </dd>
+                <dt><span jhiTranslate="supplySampleApplicationApp.record.assemblyline">Assemblyline</span></dt>
+                <dd>
+                    <div *ngIf="record.assemblylineId">
+                        <a [routerLink]="['/assembly-line', record.assemblylineId, 'view']">{{ record.assemblylineName }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/record', record.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

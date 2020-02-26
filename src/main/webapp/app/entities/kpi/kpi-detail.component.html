@@ -1,0 +1,74 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="kpi">
+            <h2><span jhiTranslate="supplySampleApplicationApp.kpi.detail.title">Kpi</span> {{ kpi.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="supplySampleApplicationApp.kpi.name">Name</span></dt>
+                <dd>
+                    <span>{{ kpi.name }}</span>
+                </dd>
+                <dt><span jhiTranslate="supplySampleApplicationApp.kpi.phenomenonTime">Phenomenon Time</span></dt>
+                <dd>
+                    <span>{{ kpi.phenomenonTime }}</span>
+                </dd>
+                <dt><span jhiTranslate="supplySampleApplicationApp.kpi.result">Result</span></dt>
+                <dd>
+                    <span>{{ kpi.result }}</span>
+                </dd>
+                <dt><span jhiTranslate="supplySampleApplicationApp.kpi.resultTime">Result Time</span></dt>
+                <dd>
+                    <span>{{ kpi.resultTime }}</span>
+                </dd>
+                <dt><span jhiTranslate="supplySampleApplicationApp.kpi.description">Description</span></dt>
+                <dd>
+                    <span>{{ kpi.description }}</span>
+                </dd>
+                <dt><span jhiTranslate="supplySampleApplicationApp.kpi.intervalTime">Interval Time</span></dt>
+                <dd>
+                    <span>{{ kpi.intervalTime }}</span>
+                </dd>
+                <dt><span jhiTranslate="supplySampleApplicationApp.kpi.type">Type</span></dt>
+                <dd>
+                    <span>{{ kpi.type }}</span>
+                </dd>
+                <dt><span jhiTranslate="supplySampleApplicationApp.kpi.unitOfMeasurement">Unit Of Measurement</span></dt>
+                <dd>
+                    <span>{{ kpi.unitOfMeasurement }}</span>
+                </dd>
+                <dt><span jhiTranslate="supplySampleApplicationApp.kpi.reserve">Reserve</span></dt>
+                <dd>
+                    <span>{{ kpi.reserve }}</span>
+                </dd>
+                <dt><span jhiTranslate="supplySampleApplicationApp.kpi.factory">Factory</span></dt>
+                <dd>
+                    <div *ngIf="kpi.factoryId">
+                        <a [routerLink]="['/factory', kpi.factoryId, 'view']">{{ kpi.factoryName }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="supplySampleApplicationApp.kpi.product">Product</span></dt>
+                <dd>
+                    <div *ngIf="kpi.productId">
+                        <a [routerLink]="['/product', kpi.productId, 'view']">{{ kpi.productName }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/kpi', kpi.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

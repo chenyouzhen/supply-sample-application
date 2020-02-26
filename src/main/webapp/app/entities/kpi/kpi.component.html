@@ -1,0 +1,89 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="supplySampleApplicationApp.kpi.home.title">Kpis</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-kpi" [routerLink]="['/kpi/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="supplySampleApplicationApp.kpi.home.createLabel">
+            Create a new Kpi
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="kpis?.length === 0">
+        <span jhiTranslate="supplySampleApplicationApp.kpi.home.notFound">No kpis found</span>
+    </div>
+
+    <div class="table-responsive" id="entities" *ngIf="kpis?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+                <tr>
+                    <th scope="col" ><span jhiTranslate="global.field.id">ID</span></th>
+                    <th scope="col" ><span jhiTranslate="supplySampleApplicationApp.kpi.name">Name</span></th>
+                    <th scope="col" ><span jhiTranslate="supplySampleApplicationApp.kpi.phenomenonTime">Phenomenon Time</span></th>
+                    <th scope="col" ><span jhiTranslate="supplySampleApplicationApp.kpi.result">Result</span></th>
+                    <th scope="col" ><span jhiTranslate="supplySampleApplicationApp.kpi.resultTime">Result Time</span></th>
+                    <th scope="col" ><span jhiTranslate="supplySampleApplicationApp.kpi.description">Description</span></th>
+                    <th scope="col" ><span jhiTranslate="supplySampleApplicationApp.kpi.intervalTime">Interval Time</span></th>
+                    <th scope="col" ><span jhiTranslate="supplySampleApplicationApp.kpi.type">Type</span></th>
+                    <th scope="col" ><span jhiTranslate="supplySampleApplicationApp.kpi.unitOfMeasurement">Unit Of Measurement</span></th>
+                    <th scope="col" ><span jhiTranslate="supplySampleApplicationApp.kpi.reserve">Reserve</span></th>
+                    <th scope="col" ><span jhiTranslate="supplySampleApplicationApp.kpi.factory">Factory</span></th>
+                    <th scope="col" ><span jhiTranslate="supplySampleApplicationApp.kpi.product">Product</span></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let kpi of kpis ;trackBy: trackId">
+                    <td><a [routerLink]="['/kpi', kpi.id, 'view']">{{ kpi.id }}</a></td>
+                    <td>{{ kpi.name }}</td>
+                    <td>{{ kpi.phenomenonTime | date:'medium' }}</td>
+                    <td>{{ kpi.result }}</td>
+                    <td>{{ kpi.resultTime | date:'medium' }}</td>
+                    <td>{{ kpi.description }}</td>
+                    <td>{{ kpi.intervalTime }}</td>
+                    <td>{{ kpi.type }}</td>
+                    <td>{{ kpi.unitOfMeasurement }}</td>
+                    <td>{{ kpi.reserve }}</td>
+                    <td>
+                        <div *ngIf="kpi.factoryId">
+                            <a [routerLink]="['/factory', kpi.factoryId , 'view']" >{{ kpi.factoryName }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="kpi.productId">
+                            <a [routerLink]="['/product', kpi.productId , 'view']" >{{ kpi.productName }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/kpi', kpi.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/kpi', kpi.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(kpi)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

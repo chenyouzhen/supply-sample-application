@@ -1,0 +1,31 @@
+{
+  "supplySampleApplicationApp": {
+    "alarm": {
+      "home": {
+        "title": "Alarms",
+        "createLabel": "Create a new Alarm",
+        "createOrEditLabel": "Create or edit a Alarm",
+        "notFound": "No Alarms found"
+      },
+      "created": "A new Alarm is created with identifier {{ param }}",
+      "updated": "A Alarm is updated with identifier {{ param }}",
+      "deleted": "A Alarm is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Alarm {{ id }}?"
+      },
+      "detail": {
+        "title": "Alarm"
+      },
+      "name": "Name",
+      "phenomenonTime": "Phenomenon Time",
+      "result": "Result",
+      "resultTime": "Result Time",
+      "description": "Description",
+      "level": "Level",
+      "status": "Status",
+      "resolveTime": "Resolve Time",
+      "details": "Details",
+      "factory": "Factory"
+    }
+  }
+}

@@ -1,0 +1,120 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-observation-heading" jhiTranslate="supplySampleApplicationApp.observation.home.createOrEditLabel">Create or edit a Observation</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="supplySampleApplicationApp.observation.phenomenonTime" for="field_phenomenonTime">Phenomenon Time</label>
+                    <div class="d-flex">
+                        <input id="field_phenomenonTime" type="datetime-local" class="form-control" name="phenomenonTime" formControlName="phenomenonTime" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="supplySampleApplicationApp.observation.result" for="field_result">Result</label>
+                    <input type="text" class="form-control" name="result" id="field_result"
+                           formControlName="result"/>
+                    <div *ngIf="editForm.get('result')!.invalid && (editForm.get('result')!.dirty || editForm.get('result')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('result')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="supplySampleApplicationApp.observation.resultTime" for="field_resultTime">Result Time</label>
+                    <div class="d-flex">
+                        <input id="field_resultTime" type="datetime-local" class="form-control" name="resultTime" formControlName="resultTime" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('resultTime')!.invalid && (editForm.get('resultTime')!.dirty || editForm.get('resultTime')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('resultTime')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('resultTime')?.errors?.ZonedDateTimelocal" jhiTranslate="entity.validation.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="supplySampleApplicationApp.observation.property" for="field_property">Property</label>
+                    <input type="text" class="form-control" name="property" id="field_property"
+                           formControlName="property"/>
+                    <div *ngIf="editForm.get('property')!.invalid && (editForm.get('property')!.dirty || editForm.get('property')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('property')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="supplySampleApplicationApp.observation.unitOfMeasurement" for="field_unitOfMeasurement">Unit Of Measurement</label>
+                    <input type="text" class="form-control" name="unitOfMeasurement" id="field_unitOfMeasurement"
+                           formControlName="unitOfMeasurement"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="supplySampleApplicationApp.observation.intervalTime" for="field_intervalTime">Interval Time</label>
+                    <input type="number" class="form-control" name="intervalTime" id="field_intervalTime"
+                           formControlName="intervalTime"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="supplySampleApplicationApp.observation.reserve" for="field_reserve">Reserve</label>
+                    <input type="text" class="form-control" name="reserve" id="field_reserve"
+                           formControlName="reserve"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="supplySampleApplicationApp.observation.assemblyline" for="field_assemblyline">Assemblyline</label>
+                    <select class="form-control" id="field_assemblyline" name="assemblyline" formControlName="assemblylineId">
+                        <option *ngIf="!editForm.get('assemblylineId')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="assemblyLineOption.id" *ngFor="let assemblyLineOption of assemblylines; trackBy: trackById">{{ assemblyLineOption.name }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('assemblylineId')!.invalid && (editForm.get('assemblylineId')!.dirty || editForm.get('assemblylineId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('assemblylineId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="supplySampleApplicationApp.observation.link" for="field_link">Link</label>
+                    <select class="form-control" id="field_link" name="link" formControlName="linkId">
+                        <option *ngIf="!editForm.get('linkId')!.value" [ngValue]="null" selected></option>
+                        <option [ngValue]="linkOption.id" *ngFor="let linkOption of links; trackBy: trackById">{{ linkOption.name }}</option>
+                    </select>
+                </div>
+                <div *ngIf="editForm.get('linkId')!.invalid && (editForm.get('linkId')!.dirty || editForm.get('linkId')!.touched)">
+                    <small class="form-text text-danger"
+                           *ngIf="editForm.get('linkId')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                    </small>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

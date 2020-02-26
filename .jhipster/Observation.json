@@ -1,0 +1,70 @@
+{
+    "name": "Observation",
+    "fields": [
+        {
+            "fieldName": "phenomenonTime",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "result",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "resultTime",
+            "fieldType": "ZonedDateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "property",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "unitOfMeasurement",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "intervalTime",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "reserve",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "assemblyLine",
+            "otherEntityRelationshipName": "observation",
+            "relationshipValidateRules": "required",
+            "relationshipName": "assemblyline",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "link",
+            "otherEntityRelationshipName": "observation",
+            "relationshipValidateRules": "required",
+            "relationshipName": "link",
+            "otherEntityField": "name"
+        }
+    ],
+    "changelogDate": "20200226140900",
+    "entityTableName": "observation",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

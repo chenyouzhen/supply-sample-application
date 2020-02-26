@@ -1,0 +1,67 @@
+{
+    "name": "Product",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "capacity",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "planCapacity",
+            "fieldType": "Instant"
+        },
+        {
+            "fieldName": "reserve",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "assemblyLine",
+            "otherEntityRelationshipName": "product",
+            "relationshipName": "assemblyline"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "kpi",
+            "otherEntityRelationshipName": "product",
+            "relationshipName": "kpi"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "factory",
+            "otherEntityRelationshipName": "product",
+            "relationshipValidateRules": "required",
+            "relationshipName": "factory",
+            "otherEntityField": "name"
+        }
+    ],
+    "changelogDate": "20200226140700",
+    "entityTableName": "product",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}
